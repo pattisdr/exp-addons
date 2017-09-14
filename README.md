@@ -1,55 +1,101 @@
-# Exp-player
+# Experimenter Addons
 
-An Ember addon for the Experimenter player. This repo will eventually include:
+A shared home for all of our shared addons
 
-- the core exp-player component
-- exp- components to be used with the player
+**For historical reasons, all PRs targeted to ISP must be aimed at the "ISP" branch**.
 
-## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+# Installation
 
-Locally link the module:
-* `npm link`
+Before beginning, you will need to install [Yarn](https://yarnpkg.com/en/docs/install), a package manager (like npm). 
 
-And in the app you want to install the addon:
-* `npm link exp-player`
 
-And in your package.json add:
-```json
-{
-  ...
-  "dependencies": {
-    "exp-player": "latest"
-  }
-}
+## Install the submodule:
+
+This repo module should included as a submodule in the Ember project where you want to use these addons.
+An example setup might be:
+```
+/<ember-project>
+  /ext
+    /exp-addons
+  /app
+    ...    
 ```
 
-Use the exp-player like: `{{exp-player frames=[...]}}`
-      
-## Frame development
+And the corresponding package.json entries are:
 
-This addon includes blueprints for creating frames:
-`ember g exp-frame exp-<name>`
+```json
+{
+  ...,
+  "dependencies": {
+    "exp-player": "file:./ext/exp-addons/exp-player",
+    "exp-models": "file:./ext/exp-addons/exp-models"
+  }
+}
 
-which will create a new component and corresponding template for the new frame.
+```
+
+For example:
+
+```bash
+cd lib && \
+git submodule init && \
+git submodule update && \
+cd exp-models && \
+yarn install --pure-lockfile
+```
+
+## Development
+
+If your work requires that you make changes to one of the exp-addon modules you can use `yarn link` for
+local development. This allows you to make changes to the code without having to push to github. To do
+this:
+
+```bash
+ROOT=`git rev-parse --show-toplevel`
+cd $ROOT/ext/exp-addons/exp-player && \
+yarn link && \
+cd $ROOT/ext/exp-addons/exp-models && \
+yarn link && \
+cd $ROOT && \
+yarn link exp-player && \
+yarn link exp-models
+```
+
+### Adding dependencies on other packages
+Sometimes, you will want to install an additional third-party package. In place of npm, this project uses `yarn`. 
+Most of the [commands](https://yarnpkg.com/en/docs/managing-dependencies) are the same, but this alternative tool 
+provides a way for two developers to guarantee they are using the same versions of underlying code. (by running 
+`yarn install --pure-lockfile`) This can help avoid a situation where things break unexpectedly when run on a different 
+computer.
+
+Whenever you choose to update your dependencies (`yarn add x` or `yarn install`), make sure that code still runs, then
+be sure to [commit](https://yarnpkg.com/en/docs/yarn-lock) the modified `yarn.lock` file, which represents the "current 
+known working state" for your app. 
 
 
-## Running
+Any changes made in exp-player (except adding files, in which case you may need to relink the module) should
+now be automagically reflected in the consuming project.
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+### Updating docs
+Documentation of `exp-player` components is generated using YUIDoc:
+ ```
+ $ cd exp-player
+ $ yarn run docs
+ ```
+ 
+At the moment, this is a manual process: whatever 
+ files are in the top level `/docs/` folder of the master branch will be served via GitHub pages. New documentation 
+ releases will require manually making a new "release" to update the master branch, which can be done on request. 
 
-## Running Tests
 
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+### Releasing a new version
+Within the `exp-player` folder, we provide a simple convenience command for handling new version releases: 
+`yarn run bump-version <MAJOR | MINOR| PATCH>`.
 
-## Building
+This command handles incrementing the version number, verifying tests pass, and updating the documentation build. You 
+  will be responsible for committing the changes before handling the actual release (using a process such as git flow).
 
-* `ember build`
+### COS is Hiring!
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+Want to help save science? Want to get paid to develop free, open source software? [Check out our openings!](http://cos.io/jobs)

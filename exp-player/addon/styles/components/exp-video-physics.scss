@@ -1,0 +1,50 @@
+.exp-video-physics video {
+    margin:auto;
+}
+
+.exp-video-physics video.intro {
+    max-height: 50%;
+}
+
+.exp-video-physics video.test:not(.attn) {
+    max-height:80%;
+    width:100%;
+}
+
+.exp-video-physics video.attn {
+    max-height: 30%;
+}
+
+.exp-video-physics .pause-instructions {
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right:auto;
+    text-align: center;
+    font-size: 3em;
+    font-weight: bold;
+}
+
+.exp-video-physics button {
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 75px;
+    min-width: 300px;
+    position: relative;
+    display: block;
+    font-size: 2em;
+}
+
+#experiment-player:not(.player-fullscreen) .exp-video-physics video {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    position: relative;
+    display: block;
+}
+
+#videoWarningConfig {
+    height: 500px;
+    width: 80%;
+    margin-left: 10%;
+}

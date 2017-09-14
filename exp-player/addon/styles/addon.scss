@@ -1,0 +1,96 @@
+// Shared across platform
+@import "components/exp-player";
+
+// Lookit-specific
+@import "components/exp-video-consent";
+@import "components/exp-video-config";
+@import "components/exp-video-config-quality";
+@import "components/exp-lookit-mood-questionnaire";
+@import "components/exp-lookit-preview-exp";
+@import "components/exp-lookit-instructions";
+@import "components/exp-lookit-exit-survey";
+@import "components/exp-lookit-geometry-alternation";
+@import "components/exp-video-preview";
+@import "components/exit-warning";
+@import "full-screen";
+@import "components/exp-lookit-preferential-looking";
+@import "components/exp-lookit-story-page";
+@import "components/exp-lookit-dialogue-page";
+
+@import "components/exp-physics-info";
+@import "components/exp-mood-questionnaire";
+@import "components/exp-physics-preview-exp";
+@import "components/exp-physics-pre-video";
+@import "components/exp-exit-survey";
+@import "components/exp-video-physics";
+
+// ISP-specific
+@import "components/radio-group";
+@import "components/isp-radio-group";
+@import "components/exp-overview";
+@import "components/exp-free-response";
+@import "components/exp-card-sort";
+@import "components/exp-rating-form";
+@import "components/exp-thank-you";
+@import "components/page-number";
+
+// Unused??
+@import "components/exp-video-setup";
+
+
+.exp-text-large {
+    font-size: 2em;
+}
+.exp-text-medium {
+    font-size: 1.5em;
+}
+.exp-text-heavy {
+    font-weight: 750;
+}
+
+.breaklines {
+    white-space: pre-wrap
+}
+
+.exp-controls {
+    margin: 5px;
+}
+
+#expContainer {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.exp-text {
+    margin: auto;
+    max-width: 65em;
+}
+
+.vertical-pad {
+    height: 8vh;
+}
+
+.modal-dialog {
+    width: 80%;
+}
+
+.break-line {
+  white-space: pre-line;
+}
+
+.video-recorder-visible {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    padding: 150px;
+    background: white;
+    height: 80% !important;
+}
+.video-recorder-hidden {
+    top: -10000px;
+    left: -10000px;
+    z-index: -1;
+    position: absolute;
+}
